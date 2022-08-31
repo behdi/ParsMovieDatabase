@@ -2,8 +2,10 @@
   <div class="container">
     <div class="row align-items-center justify-content-center login-form">
       <main class="col-10 col-md-8 col-lg-6 col-xl-5 p-md-5 p-3 card">
-        <h1 class="fw-bold mt-5">ورود به سیستم</h1>
-        <form class="p-5" [formGroup]="loginForm" (submit)="onSubmit()">
+        <img class="img-fluid col-3 mx-auto" src="assets/images/business/movie-db-logo.svg" alt="The Pars Movie Database Logo">
+        <h1 class="fw-bold text-center mb-4">دیتابیس فیلم‌ پارس</h1>
+        <form class="p-4 p-md-5" [formGroup]="loginForm" (submit)="onSubmit()">
+          <h3 class="mb-5">ورود به سیستم</h3>
           <div class="mb-5">
             <label for="username" class="form-label">نام کاربری</label>
             <input
