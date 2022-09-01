@@ -53,7 +53,7 @@ export class LoginStatusService {
     localStorage.setItem(LocalStorageKeys.AuthToken, token);
   }
 
-  public getUserToken() {
+  private getUserToken() {
     return localStorage.getItem(LocalStorageKeys.AuthToken);
   }
 
