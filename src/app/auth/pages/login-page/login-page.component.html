@@ -2,7 +2,11 @@
   <div class="container">
     <div class="row align-items-center justify-content-center login-form">
       <main class="col-10 col-md-8 col-lg-6 col-xl-5 p-md-5 p-3 card">
-        <img class="img-fluid col-3 mx-auto" src="assets/images/business/movie-db-logo.svg" alt="The Pars Movie Database Logo">
+        <img
+          class="img-fluid col-3 mx-auto"
+          src="assets/images/business/movie-db-logo.svg"
+          alt="The Pars Movie Database Logo"
+        />
         <h1 class="fw-bold text-center mb-4">دیتابیس فیلم‌ پارس</h1>
         <form class="p-4 p-md-5" [formGroup]="loginForm" (submit)="onSubmit()">
           <h3 class="mb-5">ورود به سیستم</h3>
@@ -16,12 +20,12 @@
               class="form-control form-control-lg"
               [ngClass]="{
                 'is-invalid':
-                  formHasErrors() || ctrlHasError(loginForm.controls.username)
+                  formHasErrors() || ctrlHasError(loginControls.username)
               }"
             />
             <p
               class="invalid-feedback"
-              *ngIf="ctrlHasError(loginForm.controls.username)"
+              *ngIf="ctrlHasError(loginControls.username)"
             >
               لطفا نام کاربری صحیح وارد کنید.
             </p>
@@ -36,12 +40,12 @@
               class="form-control form-control-lg"
               [ngClass]="{
                 'is-invalid':
-                  formHasErrors() || ctrlHasError(loginForm.controls.password)
+                  formHasErrors() || ctrlHasError(loginControls.password)
               }"
             />
             <p
               class="invalid-feedback"
-              *ngIf="ctrlHasError(loginForm.controls.password)"
+              *ngIf="ctrlHasError(loginControls.password)"
             >
               لطفا رمز عبور خود را وارد کنید.
             </p>

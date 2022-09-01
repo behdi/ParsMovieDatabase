@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { UserInfo } from 'src/app/models/user-info.model';
+import { AuthService } from '../../auth.service';
 import { SignInFormFields } from '../../models/sign-in-form.model';
 
 const COMMON_VALIDATORS = [
   Validators.required,
-  Validators.min(3),
-  Validators.max(10),
+  Validators.minLength(3),
+  Validators.maxLength(15),
 ];
 
 @Component({
@@ -17,11 +19,23 @@ export class LoginPageComponent implements OnInit {
   loginForm = this.initLoginForm();
   loginControls = this.loginForm.controls;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
 
   ngOnInit(): void {}
 
-  onSubmit() {}
+  onSubmit() {
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      return;
+    }
+
+    const loginInfo: UserInfo = {
+      username: this.loginForm.controls.username.value ?? '',
+      password: this.loginControls.password.value ?? '',
+    };
+
+    this.authService.login(loginInfo).subscribe(console.log);
+  }
 
   ctrlHasError(ctrl: FormControl) {
     return ctrl.touched && ctrl.errors;
@@ -37,16 +51,8 @@ export class LoginPageComponent implements OnInit {
 
   private initLoginForm() {
     return this.fb.group({
-      [SignInFormFields.Username]: ['', { validators: [...COMMON_VALIDATORS] }],
-      [SignInFormFields.Password]: [
-        '',
-        {
-          validators: [
-            ...COMMON_VALIDATORS,
-            Validators.pattern(/^[A-Za-z][A-Za-z0-9]*$/),
-          ],
-        },
-      ],
+      [SignInFormFields.Username]: ['', [...COMMON_VALIDATORS]],
+      [SignInFormFields.Password]: ['', [...COMMON_VALIDATORS]],
     });
   }
 
