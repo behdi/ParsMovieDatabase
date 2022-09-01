@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { UserInfo } from 'src/app/models/user-info.model';
 import { AuthService } from '../../auth.service';
 import { SignInFormFields } from '../../models/sign-in-form.model';
@@ -16,9 +17,10 @@ const COMMON_VALIDATORS = [
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss'],
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent implements OnInit, OnDestroy {
   loginForm = this.initLoginForm();
   loginControls = this.loginForm.controls;
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -39,14 +41,16 @@ export class LoginPageComponent implements OnInit {
       password: this.loginControls.password.value ?? '',
     };
 
-    this.authService.login(loginInfo).subscribe({
-      next: () => {
-        this.router.navigate(['dashboard']);
-      },
-      error: () => {
-        this.loginForm.setErrors({ invalidCredentials: 'اطلاعات نامعتبر!' });
-      },
-    });
+    this.subscriptions.push(
+      this.authService.login(loginInfo).subscribe({
+        next: () => {
+          this.router.navigate(['dashboard']);
+        },
+        error: () => {
+          this.loginForm.setErrors({ invalidCredentials: 'اطلاعات نامعتبر!' });
+        },
+      })
+    );
   }
 
   ctrlHasError(ctrl: FormControl) {
@@ -70,5 +74,9 @@ export class LoginPageComponent implements OnInit {
 
   get formFields() {
     return SignInFormFields;
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 }
