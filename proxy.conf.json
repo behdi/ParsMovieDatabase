@@ -1,0 +1,8 @@
+{
+  "/Login": {
+    "target": "http://interview.tmskit.com/",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
