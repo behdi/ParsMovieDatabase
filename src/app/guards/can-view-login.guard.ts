@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { CanLoad, Route, Router, UrlSegment, UrlTree } from '@angular/router';
-import { filter, take, tap, Observable } from 'rxjs';
+import { filter, Observable, take, map, tap } from 'rxjs';
 import { LoginStatusService } from '../auth/login-status.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CanViewDashboardGuard implements CanLoad {
+export class CanViewLoginGuard implements CanLoad {
   constructor(
     private loginStatus: LoginStatusService,
     private router: Router
@@ -23,9 +23,10 @@ export class CanViewDashboardGuard implements CanLoad {
     return this.loginStatus.getUserLoginStatus().pipe(
       filter((status): status is boolean => status !== null),
       take(1),
-      tap((loginStatus) => {
-        if (!loginStatus) {
-          this.router.navigate(['/']);
+      map((isLoggedIn) => !isLoggedIn),
+      tap((canViewLoginPage) => {
+        if (!canViewLoginPage) {
+          this.router.navigate(['/', 'dashboard']);
         }
       })
     );

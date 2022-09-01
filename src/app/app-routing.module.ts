@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CanViewDashboardGuard } from './guards/can-view-dashboard.guard';
+import { CanViewLoginGuard } from './guards/can-view-login.guard';
 
 const routes: Routes = [
   {
     path: 'login',
+    canLoad: [CanViewLoginGuard],
     loadChildren: () =>
       import('src/app/auth/auth.module').then((m) => m.AuthModule),
   },
