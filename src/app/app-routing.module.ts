@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CanViewDashboardGuard } from './guards/can-view-dashboard.guard';
 
 const routes: Routes = [
   {
@@ -9,6 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
+    canLoad: [CanViewDashboardGuard],
     loadChildren: () =>
       import('src/app/dashboard/dashboard.module').then(
         (m) => m.DashboardModule

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserInfo } from 'src/app/models/user-info.model';
 import { AuthService } from '../../auth.service';
 import { SignInFormFields } from '../../models/sign-in-form.model';
@@ -19,7 +20,11 @@ export class LoginPageComponent implements OnInit {
   loginForm = this.initLoginForm();
   loginControls = this.loginForm.controls;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
@@ -34,7 +39,14 @@ export class LoginPageComponent implements OnInit {
       password: this.loginControls.password.value ?? '',
     };
 
-    this.authService.login(loginInfo).subscribe(console.log);
+    this.authService.login(loginInfo).subscribe({
+      next: () => {
+        this.router.navigate(['dashboard']);
+      },
+      error: () => {
+        this.loginForm.setErrors({ invalidCredentials: 'اطلاعات نامعتبر!' });
+      },
+    });
   }
 
   ctrlHasError(ctrl: FormControl) {
