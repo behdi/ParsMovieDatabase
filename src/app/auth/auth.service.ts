@@ -16,7 +16,7 @@ export class AuthService {
     private loginStatus: LoginStatusService
   ) {}
 
-  login(userInfo: UserInfo) {
+  public login(userInfo: UserInfo) {
     return this.http
       .post<string>(`${this.apiUrl}`, userInfo, {
         responseType: 'text' as 'json',
@@ -27,9 +27,13 @@ export class AuthService {
             this.loginStatus.onUserLoginSuccessful(token);
           },
           error: () => {
-            this.loginStatus.onInvalidLogin();
+            this.loginStatus.onLogOutOrInvalidLogin();
           },
         })
       );
+  }
+
+  public logOut() {
+    this.loginStatus.logOutCurrentUser();
   }
 }

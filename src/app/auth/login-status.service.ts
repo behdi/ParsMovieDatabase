@@ -24,12 +24,16 @@ export class LoginStatusService {
     const token = this.getUserToken();
 
     if (this.isTokenExpired(token)) {
-      this.onInvalidLogin();
-      this.clearUserToken();
+      this.logOutCurrentUser();
       return;
     }
 
     this.changeLoginStatusTo(true);
+  }
+
+  public logOutCurrentUser() {
+    this.onLogOutOrInvalidLogin();
+    this.clearUserToken();
   }
 
   public onUserLoginSuccessful(token: string) {
@@ -37,7 +41,7 @@ export class LoginStatusService {
     this.storeUserToken(token);
   }
 
-  public onInvalidLogin() {
+  public onLogOutOrInvalidLogin() {
     this.changeLoginStatusTo(false);
   }
 
