@@ -1,0 +1,57 @@
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+    <div
+      class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark dashboard-sider"
+    >
+      <div
+        class="d-flex flex-column align-items-center align-items-sm-start px-1 pt-2 text-white min-vh-100"
+      >
+        <a
+          href="/dashboard"
+          class="d-flex flex-column align-items-center w-100 pb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+        >
+          <img
+            src="assets/images/business/movie-db-logo.svg"
+            class="img-thumbnail d-block mx-auto d-none d-sm-inline"
+            alt="ParsFilm Database"
+          />
+          <span class="fs-5">پارس‌فیلم</span>
+        </a>
+        <ul
+          class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100"
+          id="menu"
+        >
+          <li class="nav-item w-100 text-center">
+            <a
+              routerLink="/dashboard"
+              routerLinkActive="active"
+              class="nav-link px-0"
+            >
+              <i class="fs-4 bi bi-house-door ms-2"></i>
+              <span class="ms-1 d-none d-sm-inline">خانه</span>
+            </a>
+          </li>
+          <li class="nav-item w-100 text-center">
+            <a
+              class="nav-link px-0 align-middle"
+              routerLink="search"
+              routerLinkActive="active"
+            >
+              <i class="fs-4 bi bi-search ms-2"></i>
+              <span class="ms-1 d-none d-sm-inline">جستجو‌ی فیلم</span>
+            </a>
+          </li>
+        </ul>
+
+        <hr />
+
+        <div class="pb-4 text-center w-100">
+          <a class="btn btn-secondary w-100"> خروج </a>
+        </div>
+      </div>
+    </div>
+    <div class="col py-3">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
