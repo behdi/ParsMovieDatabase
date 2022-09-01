@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { LoaderService } from 'src/app/global-services/loader.service';
 import { UserInfo } from 'src/app/models/user-info.model';
 import { AuthService } from '../../auth.service';
 import { SignInFormFields } from '../../models/sign-in-form.model';
@@ -25,7 +26,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    public loader: LoaderService
   ) {}
 
   ngOnInit(): void {}

@@ -56,7 +56,17 @@
             </p>
           </div>
           <div class="d-grid">
-            <button type="submit" class="btn btn-primary btn-lg">ورود</button>
+            <button
+              [disabled]="loader.isLoading$ | async"
+              type="submit"
+              class="btn btn-primary btn-lg"
+            >
+              <span
+                *ngIf="loader.isLoading$ | async"
+                class="spinner-border spinner-border-sm"
+              ></span>
+              ورود
+            </button>
           </div>
         </form>
       </main>
