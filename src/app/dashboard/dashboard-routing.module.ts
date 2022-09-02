@@ -8,6 +8,13 @@ const routes: Routes = [
     component: DashboardHomeComponent,
     children: [
       {
+        path: 'search',
+        loadChildren: () =>
+          import('./pages/search-page/search-page.module').then(
+            (m) => m.SearchPageModule
+          ),
+      },
+      {
         path: '',
         loadChildren: () =>
           import('./pages/welcome-page/welcome-page.module').then(
