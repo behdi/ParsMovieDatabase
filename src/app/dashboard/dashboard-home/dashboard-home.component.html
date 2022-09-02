@@ -4,10 +4,10 @@
       class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark dashboard-sider vh-100"
     >
       <div
-        class="d-flex flex-column align-items-center align-items-sm-start px-1 pt-2 text-white "
+        class="d-flex flex-column align-items-center justify-content-between h-100 align-items-sm-start px-1 pt-2 text-white"
       >
         <a
-          href="/dashboard"
+          routerLink="/dashboard"
           class="d-flex flex-column align-items-center w-100 pb-3 mb-md-0 me-md-auto text-white text-decoration-none"
         >
           <img
@@ -25,6 +25,7 @@
             <a
               routerLink="/dashboard"
               routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
               class="nav-link px-0"
             >
               <i class="fs-4 bi bi-house-door ms-2"></i>
@@ -46,7 +47,9 @@
         <hr />
 
         <div class="pb-4 text-center w-100">
-          <button (click)="logOut()" class="btn btn-secondary w-100"> خروج </button>
+          <button (click)="logOut()" class="btn btn-secondary w-100">
+            خروج
+          </button>
         </div>
       </div>
     </div>
