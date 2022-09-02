@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Observable, scan } from 'rxjs';
+import { SearchResult } from '../../models/search-result.model';
 
 @Component({
   selector: 'app-search-result',
@@ -6,11 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-result.component.scss'],
 })
 export class SearchResultComponent implements OnInit {
+  @Output() scrolled = new EventEmitter<void>();
+  @Input() searchResults!: Observable<SearchResult>;
+
   constructor() {}
 
   ngOnInit(): void {}
 
   onScroll() {
-    console.log('scrolled!');
+    this.scrolled.emit();
   }
 }

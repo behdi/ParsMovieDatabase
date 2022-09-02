@@ -1,6 +1,6 @@
 import { MovieShortInfo } from 'src/app/models/movie-info.model';
 
 export interface SearchResult {
-  results: MovieShortInfo[];
+  results: MovieShortInfo[] | null;
   totalResults: number;
 }

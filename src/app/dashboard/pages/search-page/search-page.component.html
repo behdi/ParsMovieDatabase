@@ -2,10 +2,14 @@
   <h1 class="mb-5">جستجوی فیلم</h1>
   <p class="mb-3">کافی است نام فیلم مورد نظر خود را در این قسمت وارد کنید:</p>
 
-
-    <app-search-bar
-      class="d-block mb-5"
-      (searchQuery)="onSearchQueryChange($event)"
-    ></app-search-bar>
-    <app-search-result class="d-block"></app-search-result>
+  <app-search-bar
+    class="d-block mb-5"
+    (searchQuery)="onSearchQueryChange($event)"
+  ></app-search-bar>
+  <app-search-result
+    *ngIf="searchResults"
+    [searchResults]="searchResults"
+    (scrolled)="onScroll()"
+    class="d-block"
+  ></app-search-result>
 </div>

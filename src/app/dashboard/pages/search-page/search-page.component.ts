@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { exhaustMap, Observable, switchMap } from 'rxjs';
+import { combineLatest, Observable, scan, switchMap, tap } from 'rxjs';
 import { SearchQuery } from './models/search-query.model';
 import { SearchResult } from './models/search-result.model';
 import { SearchService } from './services/search.service';
@@ -10,14 +10,30 @@ import { SearchService } from './services/search.service';
   styleUrls: ['./search-page.component.scss'],
 })
 export class SearchPageComponent implements OnInit {
+  searchResults?: Observable<SearchResult>;
 
   constructor(private searchService: SearchService) {}
 
   ngOnInit(): void {}
 
   onSearchQueryChange(searchQuery$: Observable<SearchQuery>) {
-    searchQuery$
-      .pipe(exhaustMap((query) => this.searchService.search(query)))
-      .subscribe(console.log);
+    this.searchResults = combineLatest([
+      searchQuery$.pipe(tap(() => this.searchService.resetPageIndex())),
+      this.searchService.pageIndex,
+    ]).pipe(
+      switchMap(([query, index]) => {
+        return this.searchService.search(query, index);
+      }),
+      scan((acc, curr) => {
+        return {
+          results: [...(acc.results ?? []), ...(curr.results ?? [])],
+          totalResults: acc.totalResults,
+        };
+      })
+    );
+  }
+
+  onScroll() {
+    this.searchService.increasePageIndex();
   }
 }

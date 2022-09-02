@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, Observable } from 'rxjs';
 import { SearchFormFields } from '../../models/search-form.model';
 import { SearchQuery } from '../../models/search-query.model';
 
@@ -17,6 +17,7 @@ export class SearchBarComponent implements OnInit {
 
   ngOnInit(): void {
     const searchQuery$ = this.searchForm.valueChanges.pipe(
+      filter((val) => !!val.year && !!val.name),
       debounceTime(900),
       distinctUntilChanged()
     );

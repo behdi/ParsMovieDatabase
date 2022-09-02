@@ -1,3 +1,16 @@
 .list-group {
   max-height: 15rem;
+
+  .list-group-item {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.search-result {
+  img {
+    width: 3rem;
+    object-fit: cover;
+  }
 }
