@@ -49,16 +49,16 @@ export class LoginStatusService {
     return this._isLoggedIn$.asObservable();
   }
 
+  public getUserToken() {
+    return localStorage.getItem(LocalStorageKeys.AuthToken);
+  }
+
   private changeLoginStatusTo(isLoggedIn: boolean) {
     this._isLoggedIn$.next(isLoggedIn);
   }
 
   private storeUserToken(token: string) {
     localStorage.setItem(LocalStorageKeys.AuthToken, token);
-  }
-
-  private getUserToken() {
-    return localStorage.getItem(LocalStorageKeys.AuthToken);
   }
 
   private clearUserToken() {
