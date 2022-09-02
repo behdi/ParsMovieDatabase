@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  auth: "Login"
+  auth: 'Login',
+  movie: 'Movie',
 };
 
 /*
