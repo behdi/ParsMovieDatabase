@@ -12,7 +12,6 @@ import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-
   constructor(private toastr: ToastrService) {}
   /**
    * We don't have a lot of data (or any data, for that matter)
@@ -24,7 +23,6 @@ export class ErrorInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-
     return next.handle(request).pipe(
       catchError((err: HttpErrorResponse) => {
         if (err.status === 400) {
@@ -33,7 +31,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           this.toastr.error('خطایی رخ داده است.');
         }
 
-        return throwError(() => new Error(err.error.non_field_errors));
+        return throwError(() => new Error(err.message));
       })
     );
   }
