@@ -69,6 +69,6 @@ export class LoginStatusService {
     if (!token) return true;
 
     const decodedToken = jwt_decode<AuthDecodedInfo>(token);
-    return Date.now() <= decodedToken.exp;
+    return Date.now() >= decodedToken.exp * 1000;
   }
 }
