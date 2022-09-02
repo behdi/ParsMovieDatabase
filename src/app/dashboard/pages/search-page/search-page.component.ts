@@ -10,7 +10,6 @@ import { SearchService } from './services/search.service';
   styleUrls: ['./search-page.component.scss'],
 })
 export class SearchPageComponent implements OnInit {
-  private movieSearchEndpoint$!: Observable<SearchResult>;
 
   constructor(private searchService: SearchService) {}
 

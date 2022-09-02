@@ -5,13 +5,12 @@ import { SearchFormFields } from '../../models/search-form.model';
 import { SearchQuery } from '../../models/search-query.model';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss'],
+  selector: 'app-search-bar',
+  templateUrl: './search-bar.component.html',
+  styleUrls: ['./search-bar.component.scss'],
 })
-export class SearchComponent implements OnInit {
+export class SearchBarComponent implements OnInit {
   searchForm = this.initSearchForm();
-
   @Output() searchQuery = new EventEmitter<Observable<SearchQuery>>();
 
   constructor(private fb: FormBuilder) {}
@@ -38,14 +37,11 @@ export class SearchComponent implements OnInit {
           Validators.maxLength(4),
         ],
       ],
-      [SearchFormFields.Page]: [1],
     });
   }
 
   onScroll() {
-    this.searchForm.patchValue({
-      page: (this.searchForm.controls.page.value ?? 1) + 1,
-    });
+    console.log('Scrolled!');
   }
 
   get currYear() {
