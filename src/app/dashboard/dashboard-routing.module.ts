@@ -6,6 +6,15 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardHomeComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./pages/welcome-page/welcome-page.module').then(
+            (m) => m.WelcomePageModule
+          ),
+      },
+    ],
   },
 ];
 
