@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { exhaustMap, Observable, switchMap } from 'rxjs';
 import { SearchQuery } from './models/search-query.model';
+import { SearchResult } from './models/search-result.model';
+import { SearchService } from './services/search.service';
 
 @Component({
   selector: 'app-search-page',
@@ -8,12 +10,15 @@ import { SearchQuery } from './models/search-query.model';
   styleUrls: ['./search-page.component.scss'],
 })
 export class SearchPageComponent implements OnInit {
+  private movieSearchEndpoint$!: Observable<SearchResult>;
 
-  constructor() {}
+  constructor(private searchService: SearchService) {}
 
   ngOnInit(): void {}
 
   onSearchQueryChange(searchQuery$: Observable<SearchQuery>) {
-    searchQuery$.subscribe(console.log);
+    searchQuery$
+      .pipe(exhaustMap((query) => this.searchService.search(query)))
+      .subscribe(console.log);
   }
 }

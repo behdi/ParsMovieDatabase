@@ -2,6 +2,7 @@
   <form class="row col-12 justify-content-center" [formGroup]="searchForm">
     <div class="col-12 col-md-8 col-lg-6">
       <input
+        dir="ltr"
         type="text"
         [formControlName]="searchFormFields.MovieName"
         class="form-control"
@@ -10,6 +11,7 @@
     </div>
     <div class="col-12 col-md-4 col-lg-2">
       <input
+        dir="ltr"
         min="1900"
         [max]="currYear"
         type="number"
@@ -20,7 +22,33 @@
     </div>
   </form>
   <div class="card col-12 col-lg-8 p-0">
-    <ul class="list-group list-group-flush">
+    <ul
+      class="list-group list-group-flush overflow-auto"
+      infiniteScroll
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="50"
+      (scrolled)="onScroll()"
+      [scrollWindow]="false"
+    >
+      <li class="list-group-item list-group-item-action">An item</li>
+      <li class="list-group-item list-group-item-action">An item</li>
+      <li class="list-group-item list-group-item-action">An item</li>
+      <li class="list-group-item list-group-item-action">An item</li>
+      <li class="list-group-item list-group-item-action">An item</li>
+      <li class="list-group-item list-group-item-action">An item</li>
+
+      <li class="list-group-item list-group-item-action">An item</li>
+      <li class="list-group-item list-group-item-action">An item</li>
+      <li class="list-group-item list-group-item-action">An item</li>
+      <li class="list-group-item list-group-item-action">An item</li>
+      <li class="list-group-item list-group-item-action">An item</li>
+      <li class="list-group-item list-group-item-action">An item</li>
+      <li class="list-group-item list-group-item-action">An item</li>
+      <li class="list-group-item list-group-item-action">An item</li>
+      <li class="list-group-item list-group-item-action">An item</li>
+      <li class="list-group-item list-group-item-action">An item</li>
+      <li class="list-group-item list-group-item-action">An item</li>
+      <li class="list-group-item list-group-item-action">An item</li>
       <li class="list-group-item list-group-item-action">An item</li>
     </ul>
   </div>

@@ -12,13 +12,13 @@ export class SearchService {
 
   constructor(private http: HttpClient) {}
 
-  public search(query: SearchQuery, page: number) {
+  public search(query: SearchQuery) {
     let params = new HttpParams();
 
     params = params
       .set('name', query.name)
       .append('year', query.year)
-      .append('page', page);
+      .append('page', query.page);
 
     return this.http.get<SearchResult>(`${this.apiUrl}/Search`, { params });
   }

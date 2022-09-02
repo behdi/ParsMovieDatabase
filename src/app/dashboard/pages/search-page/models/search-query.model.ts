@@ -1,4 +1,5 @@
 export interface SearchQuery {
-    name: string;
-    year: number
+  name: string;
+  year: number;
+  page: number;
 }

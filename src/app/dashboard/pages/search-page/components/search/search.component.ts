@@ -38,6 +38,13 @@ export class SearchComponent implements OnInit {
           Validators.maxLength(4),
         ],
       ],
+      [SearchFormFields.Page]: [1],
+    });
+  }
+
+  onScroll() {
+    this.searchForm.patchValue({
+      page: (this.searchForm.controls.page.value ?? 1) + 1,
     });
   }
 
