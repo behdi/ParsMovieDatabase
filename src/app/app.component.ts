@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginStatusService } from './auth/login-status.service';
+import { LoginStatusService } from './auth/services/login-status.service';
 
 @Component({
   selector: 'app-root',

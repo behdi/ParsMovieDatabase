@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { LocalStorageKeys } from '../models/local-storage-keys';
+import { LocalStorageKeys } from '../../models/local-storage-keys';
 import jwt_decode from 'jwt-decode';
-import { AuthDecodedInfo } from './models/auth-info.model';
+import { AuthDecodedInfo } from '../models/auth-info.model';
 
 @Injectable({
   providedIn: 'root',

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanLoad, Route, Router, UrlSegment, UrlTree } from '@angular/router';
 import { filter, Observable, take, map, tap } from 'rxjs';
-import { LoginStatusService } from '../auth/login-status.service';
+import { LoginStatusService } from '../auth/services/login-status.service';
 
 @Injectable({
   providedIn: 'root',

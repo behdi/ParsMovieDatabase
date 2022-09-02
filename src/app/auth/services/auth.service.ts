@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { UserInfo } from '../models/user-info.model';
+import { UserInfo } from '../../models/user-info.model';
 import { LoginStatusService } from './login-status.service';
 
 @Injectable({

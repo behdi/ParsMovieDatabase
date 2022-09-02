@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoaderService } from 'src/app/global-services/loader.service';
 import { UserInfo } from 'src/app/models/user-info.model';
-import { AuthService } from '../../auth.service';
+import { AuthService } from '../../services/auth.service';
 import { SignInFormFields } from '../../models/sign-in-form.model';
 
 const COMMON_VALIDATORS = [
