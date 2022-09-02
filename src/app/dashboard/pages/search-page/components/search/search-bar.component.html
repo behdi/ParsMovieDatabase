@@ -1,55 +1,22 @@
-<div class="row g-3 px-md-5 justify-content-center">
-  <form class="row col-12 justify-content-center" [formGroup]="searchForm">
-    <div class="col-12 col-md-8 col-lg-6">
-      <input
-        dir="ltr"
-        type="text"
-        [formControlName]="searchFormFields.MovieName"
-        class="form-control"
-        placeholder="نام فیلم"
-      />
-    </div>
-    <div class="col-12 col-md-4 col-lg-2">
-      <input
-        dir="ltr"
-        min="1900"
-        [max]="currYear"
-        type="number"
-        [formControlName]="searchFormFields.ReleaseYear"
-        class="form-control text-center"
-        placeholder="سال ساخت"
-      />
-    </div>
-  </form>
-  <div class="card col-12 col-lg-8 p-0">
-    <ul
-      class="list-group list-group-flush overflow-auto"
-      infiniteScroll
-      [infiniteScrollDistance]="2"
-      [infiniteScrollThrottle]="50"
-      (scrolled)="onScroll()"
-      [scrollWindow]="false"
-    >
-      <li class="list-group-item list-group-item-action">An item</li>
-      <li class="list-group-item list-group-item-action">An item</li>
-      <li class="list-group-item list-group-item-action">An item</li>
-      <li class="list-group-item list-group-item-action">An item</li>
-      <li class="list-group-item list-group-item-action">An item</li>
-      <li class="list-group-item list-group-item-action">An item</li>
-
-      <li class="list-group-item list-group-item-action">An item</li>
-      <li class="list-group-item list-group-item-action">An item</li>
-      <li class="list-group-item list-group-item-action">An item</li>
-      <li class="list-group-item list-group-item-action">An item</li>
-      <li class="list-group-item list-group-item-action">An item</li>
-      <li class="list-group-item list-group-item-action">An item</li>
-      <li class="list-group-item list-group-item-action">An item</li>
-      <li class="list-group-item list-group-item-action">An item</li>
-      <li class="list-group-item list-group-item-action">An item</li>
-      <li class="list-group-item list-group-item-action">An item</li>
-      <li class="list-group-item list-group-item-action">An item</li>
-      <li class="list-group-item list-group-item-action">An item</li>
-      <li class="list-group-item list-group-item-action">An item</li>
-    </ul>
+<form class="row justify-content-center" [formGroup]="searchForm">
+  <div class="col-12 col-md-8 col-lg-6">
+    <input
+      dir="ltr"
+      type="text"
+      [formControlName]="searchFormFields.MovieName"
+      class="form-control"
+      placeholder="نام فیلم"
+    />
   </div>
-</div>
+  <div class="col-12 col-md-4 col-lg-2">
+    <input
+      dir="ltr"
+      min="1900"
+      [max]="currYear"
+      type="number"
+      [formControlName]="searchFormFields.ReleaseYear"
+      class="form-control text-center"
+      placeholder="سال ساخت"
+    />
+  </div>
+</form>

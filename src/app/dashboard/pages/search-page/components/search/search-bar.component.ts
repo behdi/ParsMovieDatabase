@@ -40,10 +40,6 @@ export class SearchBarComponent implements OnInit {
     });
   }
 
-  onScroll() {
-    console.log('Scrolled!');
-  }
-
   get currYear() {
     return new Date().getFullYear();
   }
