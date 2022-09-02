@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, Observable, scan, switchMap, tap } from 'rxjs';
+import { LoaderService } from 'src/app/global-services/loader.service';
 import { MovieShortInfo } from 'src/app/models/movie-info.model';
 import { SearchQuery } from './models/search-query.model';
 import { SearchResult } from './models/search-result.model';
@@ -17,7 +18,8 @@ export class SearchPageComponent implements OnInit {
   constructor(
     private searchService: SearchService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public loader: LoaderService
   ) {}
 
   ngOnInit(): void {}

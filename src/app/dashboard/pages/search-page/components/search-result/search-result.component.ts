@@ -11,7 +11,7 @@ import { SearchResult } from '../../models/search-result.model';
 export class SearchResultComponent implements OnInit {
   @Output() scrolled = new EventEmitter<void>();
   @Output() movieClicked = new EventEmitter<MovieShortInfo>();
-  @Input() searchResults!: Observable<SearchResult>;
+  @Input() searchResults!: SearchResult;
 
   constructor() {}
 

@@ -9,7 +9,7 @@
       [scrollWindow]="false"
     >
       <li
-        *ngFor="let result of (searchResults | async)?.results"
+        *ngFor="let result of searchResults.results"
         class="list-group-item list-group-item-action"
         (click)="onMovieClicked(result)"
       >

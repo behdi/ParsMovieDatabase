@@ -7,10 +7,16 @@
     (searchQuery)="onSearchQueryChange($event)"
   ></app-search-bar>
   <app-search-result
-    *ngIf="searchResults"
-    [searchResults]="searchResults"
+    *ngIf="searchResults | async as results; else loading"
+    [searchResults]="results"
     (scrolled)="onScroll()"
     (movieClicked)="onMovieClicked($event)"
     class="d-block"
   ></app-search-result>
 </div>
+
+<ng-template #loading>
+  <div class="d-flex justify-content-center" *ngIf="loader.isLoading$ | async">
+    <div class="spinner-border" role="status"></div>
+  </div>
+</ng-template>
