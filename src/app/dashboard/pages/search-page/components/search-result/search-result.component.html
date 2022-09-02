@@ -16,7 +16,11 @@
           dir="ltr"
           class="d-flex justify-content-start align-items-center search-result"
         >
-          <img class="me-2" [src]="result.poster" alt="" />
+          <img
+            class="me-2"
+            [src]="result.poster"
+            onerror="this.src='assets/images/placeholders/placeholder.png'"
+          />
           <div
             class="d-flex flex-column justify-content-center align-iterms-start"
           >
