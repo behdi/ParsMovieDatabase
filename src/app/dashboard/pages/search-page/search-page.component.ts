@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, Observable, scan, switchMap, tap } from 'rxjs';
+import { MovieShortInfo } from 'src/app/models/movie-info.model';
 import { SearchQuery } from './models/search-query.model';
 import { SearchResult } from './models/search-result.model';
 import { SearchService } from './services/search.service';
@@ -12,7 +14,11 @@ import { SearchService } from './services/search.service';
 export class SearchPageComponent implements OnInit {
   searchResults?: Observable<SearchResult>;
 
-  constructor(private searchService: SearchService) {}
+  constructor(
+    private searchService: SearchService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {}
 
@@ -35,5 +41,9 @@ export class SearchPageComponent implements OnInit {
 
   onScroll() {
     this.searchService.increasePageIndex();
+  }
+
+  onMovieClicked(movie: MovieShortInfo) {
+    this.router.navigate([movie.imdbID], { relativeTo: this.activatedRoute });
   }
 }

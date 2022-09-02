@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { MovieInfo } from 'src/app/models/movie-info.model';
 import { environment } from 'src/environments/environment';
 import { SearchQuery } from '../models/search-query.model';
 import { SearchResult } from '../models/search-result.model';
@@ -24,6 +25,10 @@ export class SearchService {
       .append('page', page);
 
     return this.http.get<SearchResult>(`${this.apiUrl}/Search`, { params });
+  }
+
+  public getMovieInfo(imdbId: string) {
+    return this.http.get<MovieInfo>(`${this.apiUrl}/${imdbId}`);
   }
 
   public increasePageIndex() {

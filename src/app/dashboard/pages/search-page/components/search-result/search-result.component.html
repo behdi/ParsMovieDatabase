@@ -11,6 +11,7 @@
       <li
         *ngFor="let result of (searchResults | async)?.results"
         class="list-group-item list-group-item-action"
+        (click)="onMovieClicked(result)"
       >
         <article
           dir="ltr"

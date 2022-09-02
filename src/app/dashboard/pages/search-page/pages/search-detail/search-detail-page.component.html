@@ -1,0 +1,27 @@
+<div class="card py-5 px-3">
+  <h1 class="mb-5">مشاهده‌ی جزئیات فیلم</h1>
+  <div
+    dir="ltr"
+    class="card img-fluid d-flex flex-column justify-content-center align-items-center movie-info"
+    *ngIf="movieInfo | async as movie"
+  >
+    <h3 class="text-center mt-3">{{ movie.title }} ({{ movie.year }})</h3>
+    <img
+      class="m-2"
+      [src]="movie.poster"
+      onerror="this.src='assets/images/placeholders/placeholder.png'"
+    />
+    <div class="my-5 text-center px-md-5">
+      <p class="fs-4 m-0">Plot:</p>
+      <p>{{ movie.plot }}</p>
+    </div>
+    <div class="my-1 text-center">
+      <p class="fs-4 m-0">Starring:</p>
+      <p>{{ movie.actors }}</p>
+    </div>
+    <div class="my-1 text-center">
+      <p class="fs-4 m-0">Directed by:</p>
+      <p>{{ movie.director }}</p>
+    </div>
+  </div>
+</div>

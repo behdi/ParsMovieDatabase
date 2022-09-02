@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable, scan } from 'rxjs';
+import { MovieShortInfo } from 'src/app/models/movie-info.model';
 import { SearchResult } from '../../models/search-result.model';
 
 @Component({
@@ -9,6 +10,7 @@ import { SearchResult } from '../../models/search-result.model';
 })
 export class SearchResultComponent implements OnInit {
   @Output() scrolled = new EventEmitter<void>();
+  @Output() movieClicked = new EventEmitter<MovieShortInfo>();
   @Input() searchResults!: Observable<SearchResult>;
 
   constructor() {}
@@ -17,5 +19,9 @@ export class SearchResultComponent implements OnInit {
 
   onScroll() {
     this.scrolled.emit();
+  }
+
+  onMovieClicked(movie: MovieShortInfo) {
+    this.movieClicked.emit(movie);
   }
 }

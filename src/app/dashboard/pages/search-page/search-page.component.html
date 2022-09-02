@@ -10,6 +10,7 @@
     *ngIf="searchResults"
     [searchResults]="searchResults"
     (scrolled)="onScroll()"
+    (movieClicked)="onMovieClicked($event)"
     class="d-block"
   ></app-search-result>
 </div>
