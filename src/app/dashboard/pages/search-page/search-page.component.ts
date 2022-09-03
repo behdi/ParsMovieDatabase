@@ -6,13 +6,9 @@ import {
   EMPTY,
   map,
   Observable,
-  repeat,
   scan,
   switchMap,
-  takeUntil,
-  takeWhile,
   tap,
-  withLatestFrom,
 } from 'rxjs';
 import { LoaderService } from 'src/app/global-services/loader.service';
 import { MovieShortInfo } from 'src/app/models/movie-info.model';
