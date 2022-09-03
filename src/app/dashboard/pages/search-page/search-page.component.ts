@@ -4,10 +4,15 @@ import {
   catchError,
   combineLatest,
   EMPTY,
+  map,
   Observable,
+  repeat,
   scan,
   switchMap,
+  takeUntil,
+  takeWhile,
   tap,
+  withLatestFrom,
 } from 'rxjs';
 import { LoaderService } from 'src/app/global-services/loader.service';
 import { MovieShortInfo } from 'src/app/models/movie-info.model';
@@ -33,23 +38,36 @@ export class SearchPageComponent implements OnInit {
   ngOnInit(): void {}
 
   onSearchQueryChange(searchQuery$: Observable<SearchQuery>) {
-    if (this.searchResults) return;
-
     this.searchResults = combineLatest([
       searchQuery$.pipe(tap(() => this.searchService.resetPageIndex())),
       this.searchService.pageIndex,
     ]).pipe(
       switchMap(([query, index]) => {
-        return this.searchService
-          .search(query, index)
-          .pipe(catchError(() => EMPTY));
+        return this.searchService.search(query, index).pipe(
+          map((searchResult): { result: SearchResult; index: number } => {
+            return {
+              result: searchResult,
+              index: index,
+            };
+          }),
+          catchError(() => EMPTY)
+        );
       }),
-      scan((acc, curr) => {
-        return {
-          results: [...(acc.results ?? []), ...(curr.results ?? [])],
-          totalResults: acc.totalResults,
-        };
-      })
+      scan(
+        (acc, { result, index }) => {
+          return {
+            results:
+              index === 1
+                ? result.results ?? []
+                : [...acc.results, ...(result.results ?? [])],
+            totalResults: acc.totalResults,
+          } as SearchResult;
+        },
+        {
+          results: [] as MovieShortInfo[],
+          totalResults: 0,
+        }
+      )
     );
   }
 
