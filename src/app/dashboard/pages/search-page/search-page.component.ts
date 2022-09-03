@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { combineLatest, Observable, scan, switchMap, tap } from 'rxjs';
+import {
+  catchError,
+  combineLatest,
+  EMPTY,
+  Observable,
+  scan,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { LoaderService } from 'src/app/global-services/loader.service';
 import { MovieShortInfo } from 'src/app/models/movie-info.model';
 import { SearchQuery } from './models/search-query.model';
@@ -25,12 +33,16 @@ export class SearchPageComponent implements OnInit {
   ngOnInit(): void {}
 
   onSearchQueryChange(searchQuery$: Observable<SearchQuery>) {
+    if (this.searchResults) return;
+
     this.searchResults = combineLatest([
       searchQuery$.pipe(tap(() => this.searchService.resetPageIndex())),
       this.searchService.pageIndex,
     ]).pipe(
       switchMap(([query, index]) => {
-        return this.searchService.search(query, index);
+        return this.searchService
+          .search(query, index)
+          .pipe(catchError(() => EMPTY));
       }),
       scan((acc, curr) => {
         return {
