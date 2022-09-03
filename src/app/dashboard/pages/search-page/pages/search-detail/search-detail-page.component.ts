@@ -13,7 +13,8 @@ export class SearchDetailPageComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.movieInfo = this.activatedRoute.data.pipe(map((data): MovieInfo => data['movieInfo']));
-    this.movieInfo.subscribe(console.log)
+    this.movieInfo = this.activatedRoute.data.pipe(
+      map((data): MovieInfo => data['movieInfo'])
+    );
   }
 }

@@ -54,7 +54,10 @@
       </div>
     </div>
     <main class="col py-3 vh-100 overflow-auto dashboard-body">
-      <router-outlet></router-outlet>
+      <router-outlet *ngIf="!isLoading"></router-outlet>
+      <div class="d-flex justify-content-center" *ngIf="isLoading">
+        <div class="spinner-border" role="status"></div>
+      </div>
     </main>
   </div>
 </div>
