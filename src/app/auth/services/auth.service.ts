@@ -18,8 +18,8 @@ export class AuthService {
 
   public login(userInfo: UserInfo) {
     return this.http
-      .post<string>(`${this.apiUrl}`, userInfo, {
-        responseType: 'text' as 'json',
+      .post(`${this.apiUrl}`, userInfo, {
+        responseType: 'text',
       })
       .pipe(
         tap({
